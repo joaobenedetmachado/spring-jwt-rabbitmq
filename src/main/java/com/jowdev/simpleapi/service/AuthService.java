@@ -28,6 +28,7 @@ public class AuthService {
     private JwtService jwtService;
 
     public User registerUser(String username, String password) {
+        // se o usuario exister ele da um erro, caso nao, ele salva o usuario e tal
         if (userRepository.existsByUsername(username)) {
             throw new RuntimeException("Username já existe");
         }
@@ -41,6 +42,8 @@ public class AuthService {
     }
 
     public String authenticateUser(String username, String password) {
+        // cria uma tentativa de autenticacao com o authenticationManager
+        // se der certo essa autenticao ele vai retornar o token
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(username, password));
 
