@@ -21,6 +21,7 @@ public class AuthController {
     @Operation(summary = "Registrar um novo usuário")
     public ResponseEntity<?> registerUser(@RequestBody RegisterRequest registerRequest) {
         authService.registerUser(registerRequest.getUsername(), registerRequest.getPassword());
+        System.out.println(registerRequest.getUsername() + ": Novo usuario registrado");
         return ResponseEntity.ok("Usuário registrado com sucesso!");
     }
 
@@ -28,6 +29,7 @@ public class AuthController {
     @Operation(summary = "Autenticar usuário e obter token JWT")
     public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
         String jwt = authService.authenticateUser(loginRequest.getUsername(), loginRequest.getPassword());
+        System.out.println(loginRequest.getUsername() + ": Novo login");
         return ResponseEntity.ok(new JwtResponse(jwt, loginRequest.getUsername()));
     }
 }

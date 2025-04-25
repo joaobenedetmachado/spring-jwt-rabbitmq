@@ -25,6 +25,7 @@ public class MessageController {
     @Operation(summary = "Criar uma nova mensagem")
     public ResponseEntity<Message> createMessage(@RequestBody MessageRequest messageRequest) {
         Message message = messageService.createMessage(messageRequest.getContent());
+        System.out.println(messageRequest.getContent() + ": Nova mensagem");
         return ResponseEntity.ok(message);
     }
 
@@ -32,6 +33,7 @@ public class MessageController {
     @Operation(summary = "Listar todas as mensagens")
     public ResponseEntity<List<Message>> getAllMessages() {
         List<Message> messages = messageService.getAllMessages();
+        System.out.println(messages + ": Listando mensagens");
         return ResponseEntity.ok(messages);
     }
 }
