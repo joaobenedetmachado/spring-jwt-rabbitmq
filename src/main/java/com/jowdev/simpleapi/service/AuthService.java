@@ -28,7 +28,7 @@ public class AuthService {
     private JwtService jwtService;
 
     public User registerUser(String username, String password) {
-        // se o usuario exister ele da um erro, caso nao, ele salva o usuario e tal
+        // se o usuario existir ele dá um erro, caso nao, ele salva o usuario e tal
         if (userRepository.existsByUsername(username)) {
             throw new RuntimeException("Username já existe");
         }
