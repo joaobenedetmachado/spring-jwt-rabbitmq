@@ -21,8 +21,8 @@ public class MessageService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private RabbitMQService rabbitMQService;
+//    @Autowired
+//    private RabbitMQService rabbitMQService;
 
     public Message createMessage(String content) {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -35,7 +35,7 @@ public class MessageService {
 
         Message savedMessage = messageRepository.save(message);
 
-        rabbitMQService.sendMessage(savedMessage);
+//        rabbitMQService.sendMessage(savedMessage);
 
         return savedMessage;
     }
@@ -44,10 +44,10 @@ public class MessageService {
         return messageRepository.findAll();
     }
 
-    @RabbitListener(queues = "${app.rabbitmq.queue}")
-    public void receiveMessage(Message message) {
-        System.out.println("Mensagem recebida: " + message.getContent());
-        System.out.println("Enviada por: " + message.getSender().getUsername());
-        System.out.println("Timestamp: " + message.getTimestamp());
-    }
+//    @RabbitListener(queues = "${app.rabbitmq.queue}")
+//    public void receiveMessage(Message message) {
+//        System.out.println("Mensagem recebida: " + message.getContent());
+//        System.out.println("Enviada por: " + message.getSender().getUsername());
+//        System.out.println("Timestamp: " + message.getTimestamp());
+//    }
 }
