@@ -1,0 +1,5 @@
+app:
+  rabbitmq:
+    exchange: message.exchange
+    routing-key: message.routing-key
+    queue: message.queue
